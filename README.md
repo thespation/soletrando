@@ -6,6 +6,14 @@ Funciona 100% no navegador, **sem instalação e sem servidor** (os dados ficam 
 
 ---
 
+## 🖼️ Demonstração
+
+| Modo claro | Modo escuro |
+|---|---|
+| <img src="prints/W00_GIF.gif" alt="Soletrando em modo claro" width="400"> | <img src="prints/B00_GIF.gif" alt="Soletrando em modo escuro" width="400"> |
+
+---
+
 ## ✨ Funcionalidades
 
 ### 🎮 Para o Jogo (alunos + professor)
