@@ -137,12 +137,7 @@ Trocar entre **Português (Brasil)**, **English** e **Español** — a preferên
 
 ## 🚀 Como usar
 
-1. Abra o `index.html` no navegador (Chrome/Edge recomendados) — ou sirva a pasta com um servidor simples:
-   ```
-   python -m http.server
-   # ou
-   npx serve
-   ```
+1. Abra o `index.html` no navegador (Chrome/Edge recomendados) — basta dar dois cliques no arquivo.
 2. Clique em **Painel do Professor** para cadastrar séries, disciplinas e palavras.
 3. Volte ao início e clique em **Jogar** para selecionar série, turmas e disciplinas.
 4. Pronto para soletrar!
