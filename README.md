@@ -158,7 +158,16 @@ Trocar entre **Português (Brasil)**, **English** e **Español** — a preferên
 ```
 soletrando/
 ├── index.html        # Tela única com todas as telas do app
-├── css/style.css     # Estilos (temas claro/escuro)
+├── css/
+│   ├── style.css             # Ponto de entrada — importa os arquivos abaixo, na ordem
+│   ├── base.css              # Variáveis, temas, reset, telas, botões
+│   ├── home.css              # Tela inicial + tela de seleção
+│   ├── game.css               # Tela do jogo, resultado, fim de jogo
+│   ├── admin.css               # Painel do professor
+│   ├── modals.css              # Modais
+│   ├── session-results.css     # Resultado da sessão + Hall da fama
+│   ├── events.css              # Fluxo guiado de eventos
+│   └── utilities.css           # Utilitários, responsividade, importação em lote, log de atividades
 ├── js/
 │   ├── i18n.js       # Internacionalização (idiomas, tradução de logs, textos)
 │   ├── language/     # Dicionários por idioma (pt-BR.js, en.js, es.js)
