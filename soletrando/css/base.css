@@ -1,0 +1,308 @@
+/* ===== BASE: Variáveis, Temas, Reset, Telas, Botões ===== */
+
+/* ===== VARIÁVEIS E TEMAS ===== */
+:root {
+    --primary: hsl(142, 71%, 45%);
+    --primary-hover: hsl(142, 71%, 35%);
+    --secondary: #64748b;
+    --secondary-hover: #475569;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --accent: hsl(38, 92%, 50%);
+    
+    --bg-primary: #020617;
+    --bg-secondary: #0f172a;
+    --bg-tertiary: #1e293b;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    
+    --border: #1e293b;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.4);
+    
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+    
+    --transition: all 0.3s ease;
+    
+    --font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+    --bg-primary: hsl(222, 47%, 4%);
+    --bg-secondary: hsl(217, 33%, 12%);
+    --bg-tertiary: hsl(217, 33%, 17%);
+    
+    --text-primary: hsl(210, 40%, 98%);
+    --text-secondary: hsl(215, 20%, 65%);
+    --text-muted: hsl(217, 33%, 40%);
+    
+    --border: hsl(217, 33%, 20%);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.6);
+
+    color-scheme: dark;
+}
+
+/* Tema Claro */
+[data-theme="light"] {
+    --bg-primary: hsl(210, 40%, 96%);
+    --bg-secondary: hsl(0, 0%, 100%);
+    --bg-tertiary: hsl(210, 40%, 92%);
+    
+    --text-primary: hsl(222, 47%, 11%);
+    --text-secondary: hsl(215, 20%, 40%);
+    --text-muted: hsl(215, 20%, 55%);
+    
+    --border: hsl(214, 32%, 85%);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    color-scheme: light;
+}
+
+/* Temas de Cores */
+[data-color="ocean"] {
+    --primary: #0ea5e9;
+    --primary-hover: #0284c7;
+}
+
+[data-color="forest"] {
+    --primary: #06b6d4;
+    --primary-hover: #0891b2;
+}
+
+[data-color="sunset"] {
+    --primary: #f97316;
+    --primary-hover: #ea580c;
+}
+
+[data-color="purple"] {
+    --primary: #a855f7;
+    --primary-hover: #9333ea;
+}
+
+[data-color="rose"] {
+    --primary: #f43f5e;
+    --primary-hover: #e11d48;
+}
+
+/* ===== RESET E BASE ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    line-height: 1.6;
+    overflow: hidden;
+    margin: 0;
+}
+
+.glass {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.glass-strong {
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+[data-theme="light"] .glass {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+[data-theme="light"] .glass-strong {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+#app {
+    width: 100%;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== TELAS ===== */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    line-height: 1;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-primary {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: var(--font-size-lg);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-sm);
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.btn-icon:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.btn-close {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.btn-close:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.35);
+    transform: rotate(90deg);
+}
+
+.btn-start-game {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3), 0 0 60px rgba(34, 197, 94, 0.1);
+    transition: var(--transition);
+}
+
+.btn-start-game:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.4), 0 0 80px rgba(34, 197, 94, 0.15);
+}
+
+.btn-start-game:active {
+    transform: scale(0.97);
+}
+
+.btn-start-game:disabled {
+    background: var(--bg-tertiary);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
