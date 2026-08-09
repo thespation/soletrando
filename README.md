@@ -159,10 +159,10 @@ Trocar entre **Português (Brasil)**, **English** e **Español** — a preferên
 soletrando/
 ├── index.html        # Tela única com todas as telas do app
 ├── css/
-│   ├── style.css             # Ponto de entrada — importa os arquivos abaixo, na ordem
-│   ├── base.css              # Variáveis, temas, reset, telas, botões
-│   ├── home.css              # Tela inicial + tela de seleção
-│   ├── game.css               # Tela do jogo, resultado, fim de jogo
+│   ├── style.css               # Ponto de entrada — importa os arquivos abaixo, na ordem
+│   ├── base.css                # Variáveis, temas, reset, telas, botões
+│   ├── home.css                # Tela inicial + tela de seleção
+│   ├── game.css                # Tela do jogo, resultado, fim de jogo
 │   ├── admin.css               # Painel do professor
 │   ├── modals.css              # Modais
 │   ├── session-results.css     # Resultado da sessão + Hall da fama
