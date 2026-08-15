@@ -34,6 +34,16 @@ Funciona 100% no navegador, **sem instalação e sem servidor** (os dados ficam 
 - **Painel de erro didático** — mostra a letra digitada vs. esperada e revela a palavra correta (opcional).
 - **Tela cheia, tema claro/escuro, efeitos sonoros e confete** no fim da sessão.
 - **Resultado da sessão** com total, acertos, erros, taxa de acerto, lista detalhada de palavras e acesso ao histórico completo.
+- **Sequência de acertos (streak)** — badge "🔥 N seguidas!" durante o jogo a partir de 3 acertos seguidos, com a melhor sequência exibida no resultado final.
+- **Conquistas da sessão** — badges como "🎯 Perfeito!", "🔥 Sequência de Ouro", "💪 Maratona" e "🌟 Mandou Bem", calculadas sempre a partir da sessão atual (o app roda em computador compartilhado por turmas diferentes).
+- **"Praticar as que errei"** — inicia automaticamente uma sessão de treino (em Modo Ensaio) só com as palavras erradas da sessão anterior.
+- **Desafio do Dia** — atalho na tela inicial que sorteia (de forma determinística pela data) uma combinação de série/disciplina para começar a jogar em um toque.
+
+### 📲 Instalável e funciona offline (PWA)
+
+- O app pode ser **instalado** no celular, tablet ou computador (como um aplicativo de verdade, com ícone próprio), direto pelo navegador.
+- Depois de aberto uma vez, **funciona sem internet** — importante para salas de aula com wifi instável. Isso é feito com um Service Worker que guarda os arquivos do app em cache.
+- Exige que o app esteja publicado via HTTPS (o GitHub Pages já atende a esse requisito automaticamente); não funciona abrindo o `index.html` direto do computador.
 
 ### 🌍 Idiomas (troca de idioma)
 
@@ -118,6 +128,9 @@ Escolha como aparecem os espaços de cada letra:
 ### Tema
 Alternar entre **tema claro** e **escuro** em qualquer tela (botão de lua no canto).
 
+### Cor do Tema
+Escolha a cor de destaque do app entre 6 opções (verde padrão, oceano, floresta, pôr do sol, roxo, rosa) — aplicada a botões, barras de progresso e outros elementos.
+
 ### Idioma
 Trocar entre **Português (Brasil)**, **English** e **Español** — a preferência é salva e aplicada na próxima abertura.
 
@@ -152,12 +165,17 @@ Trocar entre **Português (Brasil)**, **English** e **Español** — a preferên
 - Ícones SVG inline (estilo Lucide).
 - `localStorage` para os dados, **File System Access API / OPFS** para imagens e backups persistentes.
 - Geração de áudio de celebração via Web Audio API.
+- **PWA** (instalável, funciona offline) via `manifest.json` + Service Worker.
+- **Testes automatizados** das funções puras de `js/utils.js`, usando o runner nativo do Node (`node --test`), sem dependências.
 
 ## 📁 Estrutura
 
 ```
 soletrando/
-├── index.html        # Tela única com todas as telas do app
+├── index.html          # Tela única com todas as telas do app
+├── manifest.json       # Manifesto PWA (nome, ícones, cores)
+├── sw.js               # Service Worker (cache offline)
+├── package.json        # Script de testes (npm test)
 ├── css/
 │   ├── style.css               # Ponto de entrada — importa os arquivos abaixo, na ordem
 │   ├── base.css                # Variáveis, temas, reset, telas, botões
@@ -177,13 +195,19 @@ soletrando/
 │   ├── game.js       # Lógica do jogo (soletração, rodadas, sessões)
 │   ├── admin.js      # Painel do professor (CRUD, eventos, resultados)
 │   └── app.js        # Navegação, telas, inicialização e home
-├── img/              # Imagens das palavras (após migração)
+├── tests/            # Testes automatizados (node --test tests/)
+├── img/
+│   ├── icons/        # Ícones do PWA (vários tamanhos)
+│   └── ...           # Imagens das palavras (após migração)
 └── backups/          # Backups locais gerados pelo app
 ```
+
+Para rodar os testes: `npm test` (ou `node --test tests/**/*.test.js`).
 
 ---
 
 ## ⚠️ Observações
+
 
 - Como os dados ficam no navegador, limpar os dados do site ou usar outro navegador/computador **sem exportar antes** perde as configurações.
 - A pasta do sistema e os backups exigem a permissão do navegador para ler/gravar arquivos — conceda apenas quando solicitado.
