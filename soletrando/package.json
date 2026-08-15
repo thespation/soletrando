@@ -1,0 +1,9 @@
+{
+    "name": "soletrando",
+    "version": "1.0.0",
+    "description": "Jogo de soletração para uso em sala de aula.",
+    "private": true,
+    "scripts": {
+        "test": "node --test tests/**/*.test.js"
+    }
+}
