@@ -1,0 +1,408 @@
+/* ===== BASE: Variáveis, Temas, Reset, Telas, Botões ===== */
+
+/* ===== VARIÁVEIS E TEMAS ===== */
+:root {
+    --primary: #88C0D0;
+    --primary-hover: #81A1C1;
+    --secondary: #64748b;
+    --secondary-hover: #475569;
+    --success: #A3BE8C;
+    --danger: #BF616A;
+    --warning: #D08770;
+    --accent: #EBCB8B;
+    --primary-rgb: 136, 192, 208;
+    --accent-rgb: 235, 203, 139;
+    --success-rgb: 163, 190, 140;
+    --danger-rgb: 191, 97, 106;
+    --on-primary: #2E3440;
+    --on-accent: #2E3440;
+    --on-danger: white;
+    --on-success: #2E3440;
+
+    --bg-primary: #2E3440;
+    --bg-secondary: #3B4252;
+    --bg-tertiary: #434C5E;
+
+    --text-primary: #ECEFF4;
+    --text-secondary: #D8DEE9;
+    --text-muted: #7B88A1;
+
+    --border: #4C566A;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.4);
+    
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-lg: 1rem;
+    
+    --transition: all 0.3s ease;
+    
+    --font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+    /* Fonte de destaque: título e letras do jogo. Com fallback pra --font-family
+       caso a fonte não carregue (ex: sem internet e ainda não cacheada). */
+    --font-family-display: 'Baloo 2', var(--font-family);
+    --font-size-base: 16px;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+}
+
+/* =====================================================================
+   PALETAS — Nórdico (padrão) e Catppuccin, cada uma com modo claro/escuro.
+   [data-palette] controla a paleta; [data-theme] controla claro/escuro.
+   Nórdico é o padrão (sem precisar do atributo data-palette); Catppuccin
+   é aplicado com [data-palette="catppuccin"], que tem mais especificidade
+   e sobrescreve os valores do Nórdico corretamente.
+   ===================================================================== */
+
+/* Nórdico — Escuro (paleta oficial: Polar Night / Snow Storm / Frost / Aurora) */
+[data-theme="dark"] {
+    --bg-primary: #2E3440;
+    --bg-secondary: #3B4252;
+    --bg-tertiary: #434C5E;
+
+    --text-primary: #ECEFF4;
+    --text-secondary: #D8DEE9;
+    --text-muted: #7B88A1;
+
+    --border: #4C566A;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.6);
+
+    --primary: #88C0D0;
+    --primary-hover: #81A1C1;
+    --accent: #EBCB8B;
+    --success: #A3BE8C;
+    --danger: #BF616A;
+    --warning: #D08770;
+    --primary-rgb: 136, 192, 208;
+    --accent-rgb: 235, 203, 139;
+    --success-rgb: 163, 190, 140;
+    --danger-rgb: 191, 97, 106;
+    /* Frost/Aurora são claros mesmo no tema escuro — texto branco em cima
+       fica com contraste ruim (~1.6-2:1). Usa texto escuro nesses botões. */
+    --on-primary: #2E3440;
+    --on-accent: #2E3440;
+    --on-danger: white;
+    --on-success: #2E3440;
+
+    color-scheme: dark;
+}
+
+/* Nórdico — Claro (adaptação: Nord não tem variante clara oficial, então
+   invertemos Polar Night ↔ Snow Storm mantendo os acentos Frost/Aurora,
+   escurecidos onde necessário para manter contraste em fundo claro) */
+[data-theme="light"] {
+    --bg-primary: #ECEFF4;
+    --bg-secondary: #E5E9F0;
+    --bg-tertiary: #D8DEE9;
+
+    --text-primary: #2E3440;
+    --text-secondary: #3B4252;
+    --text-muted: #4C566A;
+
+    --border: #C7D0DD;
+    --shadow: 0 1px 3px rgba(46, 52, 64, 0.12);
+    --shadow-lg: 0 4px 6px rgba(46, 52, 64, 0.16);
+
+    --primary: #5E81AC;
+    --primary-hover: #4C6E94;
+    --accent: #C57B3C;
+    --success: #6B8E5A;
+    --danger: #BF616A;
+    --warning: #B9782E;
+    --primary-rgb: 94, 129, 172;
+    --accent-rgb: 197, 123, 60;
+    --success-rgb: 107, 142, 90;
+    --danger-rgb: 191, 97, 106;
+    --on-primary: white;
+    --on-accent: white;
+    --on-danger: white;
+    --on-success: white;
+
+    color-scheme: light;
+}
+
+/* Catppuccin — Mocha (escuro) */
+[data-palette="catppuccin"][data-theme="dark"] {
+    --bg-primary: #1e1e2e;
+    --bg-secondary: #181825;
+    --bg-tertiary: #313244;
+
+    --text-primary: #cdd6f4;
+    --text-secondary: #bac2de;
+    --text-muted: #6c7086;
+
+    --border: #45475a;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.6);
+
+    --primary: #cba6f7;
+    --primary-hover: #b48ee0;
+    --accent: #fab387;
+    --success: #a6e3a1;
+    --danger: #f38ba8;
+    --warning: #f9e2af;
+    --primary-rgb: 203, 166, 247;
+    --accent-rgb: 250, 179, 135;
+    --success-rgb: 166, 227, 161;
+    --danger-rgb: 243, 139, 168;
+    /* Mauve/Peach são claros mesmo no tema escuro — mesmo caso do Nord Dark.
+       O vermelho (danger) da Mocha também é claro, mesmo motivo. */
+    --on-primary: #1e1e2e;
+    --on-accent: #1e1e2e;
+    --on-danger: #1e1e2e;
+    --on-success: #1e1e2e;
+
+    color-scheme: dark;
+}
+
+/* Catppuccin — Latte (claro) */
+[data-palette="catppuccin"][data-theme="light"] {
+    --bg-primary: #eff1f5;
+    --bg-secondary: #e6e9ef;
+    --bg-tertiary: #ccd0da;
+
+    --text-primary: #4c4f69;
+    --text-secondary: #5c5f77;
+    --text-muted: #8c8fa1;
+
+    --border: #bcc0cc;
+    --shadow: 0 1px 3px rgba(76, 79, 105, 0.12);
+    --shadow-lg: 0 4px 6px rgba(76, 79, 105, 0.16);
+
+    --primary: #8839ef;
+    --primary-hover: #7031c9;
+    --accent: #fe640b;
+    --success: #40a02b;
+    --danger: #d20f39;
+    --warning: #df8e1d;
+    --primary-rgb: 136, 57, 239;
+    --accent-rgb: 254, 100, 11;
+    --success-rgb: 64, 160, 43;
+    --danger-rgb: 210, 15, 57;
+    --on-primary: white;
+    --on-accent: white;
+    --on-danger: white;
+    --on-success: white;
+
+    color-scheme: light;
+}
+
+/* ===== RESET E BASE ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    line-height: 1.6;
+    overflow: hidden;
+    margin: 0;
+}
+
+.glass {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.glass-strong {
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+[data-theme="light"] .glass {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+[data-theme="light"] .glass-strong {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+#app {
+    width: 100%;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== TELAS ===== */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    line-height: 1;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--on-primary, white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: var(--on-danger, white);
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: var(--on-accent, white);
+}
+
+.btn-accent:hover {
+    filter: brightness(0.92);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-danger:hover {
+    filter: brightness(0.88);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: var(--font-size-lg);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-sm);
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.btn-icon:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.btn-close {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.btn-close:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--on-primary, white);
+    box-shadow: 0 0 14px rgba(var(--primary-rgb), 0.35);
+    transform: rotate(90deg);
+}
+
+.btn-start-game {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: var(--on-primary, white);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.3), 0 0 60px rgba(var(--primary-rgb), 0.1);
+    transition: var(--transition);
+}
+
+.btn-start-game:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.4), 0 0 80px rgba(var(--primary-rgb), 0.15);
+}
+
+.btn-start-game:active {
+    transform: scale(0.97);
+}
+
+.btn-start-game:disabled {
+    background: var(--bg-tertiary);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
